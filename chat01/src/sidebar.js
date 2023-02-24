@@ -13,8 +13,8 @@ import { useSelector } from "react-redux";
  function Sidebar(){
 
     const [chatList, SetChatList] = useState([])
-    const state = useSelector((state)=>state)
-    const user = state.user._id
+    const state = useSelector((state)=>state.gReducer)
+    const user =  useSelector((state)=>state.gReducer.user._id)
 
     useEffect(()=>{
         getChatList(user).then(res=> SetChatList(res.data.data))
@@ -28,7 +28,7 @@ import { useSelector } from "react-redux";
                 <Link to="/chat">chat</Link>
                 <Link to="/login">LogIn</Link>
                 <Link to="/signup">SignUp</Link>
-                <Link to="/profile">SignUp</Link>
+                <Link to="/videocall">VideoCall</Link>
                 <div className="sidebar_headerRight">
                     <IconButton>
                         <DonutLargeIcon/>
@@ -49,15 +49,11 @@ import { useSelector } from "react-redux";
                 </div>
             </div>
             <div className="sidebar_chats">
-                 <SidebarChat key="12244" chatid="34233" name="hey dev"/> 
                  {chatList.map(ch=>(<SidebarChat key="12244" chatid={ch._id} name={ch.users[0].name==state.user.name?ch.users[1].name:ch.users[0].name} /> ))}
 
-                <p>{}</p>
                 {/* <Link to="/chat/devv">  <SideHo key="1234" id="1224" str="adfgh" name="dev"/> </Link>
                 <Link to="/chat/0000"><SideHo key="1234" id="1224" str="abcd" name="dev "/> </Link> */}
-                <p>ddddddddddd</p>
-                <p>ddddddddddd</p>
-                <p>ddddddddddd</p>
+
             </div>
             
         </div>

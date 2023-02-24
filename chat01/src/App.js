@@ -14,6 +14,7 @@ import SideHo from "./side1";
 
 import Login from './components2/login';
 import SignUP from './components2/signup';
+import VideoCall from './components2/videocall';
 
 import Sidebar from './sidebar';
 import {Link} from 'react-router-dom'
@@ -27,6 +28,7 @@ import {
   Routes,
 } from "react-router-dom";
 import React, { useState} from 'react';
+import { ContextProvider } from './context/videoContext';
 import LoginNew from './components2/loginNew';
 const style1 = {
   width: "280px",
@@ -38,6 +40,7 @@ const style1 = {
 function App() {
   // const counter = useSelector((state) => state);
   const dispatch = useDispatch();
+  
 
 
   return (
@@ -56,10 +59,35 @@ function App() {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<SignUP />} />
                   */}
-                  <Route exact path="/login" element={<Login />} />
+                  <Route exact path="/" element={<Login />} />
                   <Route exact path="/loginNew" element={<LoginNew />} />
                   <Route exact path="/signup" element={<SignUP />} />
                   <Route exact path="/chat/*" element={<ChatHome/>} />
+                  
+
+                  
+                  <Route exact path="/videocall" 
+                    element={
+                      <ContextProvider>
+                        <VideoCall />
+                        </ContextProvider>
+                      
+                    }
+
+                   />
+                   <Route exact path="/videocall/:chatid" 
+                    element={
+                      <ContextProvider>
+                        <VideoCall />
+                        </ContextProvider>
+                      
+                    }
+
+                   />
+                   
+                   
+                  
+
 
                 {/* <Route exact path="/sidebar" element={<Sidebar />} /> */}
                 {/* <Route exact path="/profile" element={<Profile />} /> */} 

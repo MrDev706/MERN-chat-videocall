@@ -18,8 +18,9 @@ export const setToken = (token)=>{
 export const setChats = (msg)=>{
     return {type: "chats", payload: msg}
 }
+
 export const clearChats = ()=>{
-    return {type: "clearchats"}
+    return {type: "clearChats"}
 }
 
 
@@ -31,4 +32,8 @@ export const setSelectedChat = (user)=>{
 
 export const newMsg = (msg)=>{
     return {type: "NEW_MSG", payload: msg}
+}
+
+export const setCall = (call)=>{
+    return { type: "setCall", payload: call}
 }

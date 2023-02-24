@@ -38,8 +38,28 @@ io.on('connection', (socket) => {
 
     socket.on('join', (chatId)=>{
       socket.join(chatId)
-      console.log("scoket joined :" + socket.userId + "chatid" + chatId)
+      socket.emit("joined")
+      console.log("scoket joined :" + socket.userId + "chatid" + socket.rooms)
     })
+
+    ////////////////// new part////////////////////////
+
+    // socket.on("i am ready", (chatid)=>{
+    //   if(chatid.length>0){
+    //     console.log("i am ready-server")
+    //     socket.broadcast.to(chatid).emit("i am ready")
+    //   }
+    // })
+
+    // socket.on("someone is calling you", (chatid)=>{
+    //   console.log("someone is callingu")
+      
+    //     socket.broadcast.to(chatid).emit("someone is calling you", chatid)
+
+    // })
+
+////////////////////////////////////////////////////////////
+
 
     socket.on("new user", (data)=>{
            //console.log(data)
@@ -51,10 +71,22 @@ io.on('connection', (socket) => {
     socket.on('new message', async (data)=>{
           data.user = socket.userId
           let newdata = await chatModel.create(data) 
-          //io.to(data.roomId).emit('new message', newdata)
-           socket.emit('chat message', newdata)
+          io.to(data.roomId).emit('chat message', newdata)
+           //socket.emit('chat message', newdata)
           console.log(newdata)
     })
+
+    //Video calling Fetures
+
+	socket.on("calluser", ({ userToCall, signalData, from, name }) => {
+    console.log("callng.....")
+		socket.broadcast.to(userToCall).emit("calluser", { signal: signalData, from, name });
+	});
+
+    	socket.on("answercall", (data) => {
+        console.log("answerng.....")
+        socket.broadcast.to(data.to).emit("callaccepted", data.signal)
+    	});
 
   })
 

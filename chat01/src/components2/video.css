@@ -1,0 +1,42 @@
+
+.video-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-direction: column;
+}
+.video-section {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightcoral;
+    box-sizing: border-box;
+    border: 5px solid #333;
+
+}
+.box {
+    position: relative;
+    margin: 0 50px;
+    
+    box-sizing:  border-box;
+    box-shadow: 8px 10px 20px rgba(218, 70, 205, 0.5);
+} 
+
+.box h2 {
+    text-transform: uppercase;
+    color: crimson;
+    letter-spacing: 1.5px;
+    font-family: sans-serif;
+}
+
+.controlls {
+    margin-top: 30px;
+    width: 300px;
+    padding: 30px 60px;
+    left: 30%;
+    bottom: 80px;
+    background-color: rgba(0,0,0,0.5);
+}

@@ -62,7 +62,7 @@ module.exports.sendMessage = sendMessage
 const getMsg = async function(req, res){
  
     const roomId = req.params.roomId
-    let data = await chatModel.find({roomId: roomId}).sort({updatedAt: -1})
+    let data = await chatModel.find({roomId: roomId}).sort({updatedAt: 1})
 
     if(!data){
         return res.send({status: false, error: "RoomId is Not available"})
@@ -75,7 +75,7 @@ module.exports.getMsg = getMsg
 
 const getChatList = async function(req, res){
     let user = req.params.userId
-    let list = await roomModel.find({users: {$elemMatch: {$eq: user}}}).populate('users', "-password").sort({updatedAt: -1})
+    let list = await roomModel.find({users: {$elemMatch: {$eq: user}}}).populate('users', "-password").sort({createdAt: -1})
     if(!list){
         return res.send({status: false, error: "no chat list"})
     }

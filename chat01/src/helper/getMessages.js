@@ -1,9 +1,9 @@
-import { FunctionsRounded } from '@material-ui/icons'
+
 import axios from 'axios'
-import Login from '../components2/login'
+
 export async function getMessages(id){
     const{data} = await axios.get(`http://localhost:3001/getmessages/${id}`)
-    console.log(data.data)
+    console.log(data)
     if(!data){
 
         return {status: false, data: []}
@@ -15,7 +15,7 @@ export async function getMessages(id){
 }
 
 export async function userInfo(userId){
-    let {data} = axios.get('api/user/{usrId}')
+    let {data} = axios.get(`api/user/${userId}`)
     if(data){
         return {status: true, data: data}
     }else{
@@ -26,7 +26,7 @@ export async function userInfo(userId){
 
 export async function getChatList(userId){
     let user = "6369d134959e5990e67d8e0d"
-    const {data} = await axios.get(`http://localhost:3001/chatlist/${user}`)
+    const {data} = await axios.get(`http://localhost:3001/chatlist/${userId}`)
     console.log(data)
 
     if(data){
@@ -43,7 +43,7 @@ export async function login(email, pass){
     if(user){
         return {status: true, data: user.data}
     }else{
-        return {status: false}
+        return {status: false, error: "INVALID USER"}
     }
 
 }

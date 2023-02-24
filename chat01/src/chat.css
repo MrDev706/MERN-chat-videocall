@@ -39,6 +39,31 @@
     min-width: 100px;
 }
 
+span p {
+    position: absolute;
+    top: 50px;
+    padding: 10px 30px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.incoming-call div {
+    position: absolute;
+    top: 100px;
+    left: 40%;
+    width: 500px;
+    height: 100px;
+    background-color: rgb(82, 50, 114);
+    box-shadow: 5px 10px 20px rgba(182, 71, 132, 0.3);
+    z-index: 100;
+
+
+}
+.incoming-call button{
+    padding: 5px 15px;
+    background-color: orangered;
+    margin: 0 10px;
+}
+
 .chat_body{
     flex: 1;
     background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');

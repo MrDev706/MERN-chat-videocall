@@ -8,6 +8,6 @@ WORKDIR /user/app
 
 COPY . .
 
-EXPOSE 3001
+EXPOSE 3000
 
-CMD ["node", "src/index.js"]
+CMD ["npm", "start"]
